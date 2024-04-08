@@ -49,13 +49,13 @@ head(data)
 
 ```{r}
 library(dplyr)
-data %>% filter(log2FoldChange > 2, padj < 0.05)
+library(DT)
+datatable(data %>% filter(log2FoldChange > 2, padj < 0.05))
 ```
 
 ### Up regulated
 
 ```{r}
-library(dplyr)
 data %>% filter(log2FoldChange > 2, padj < 0.05)
 ```
 

@@ -165,7 +165,16 @@
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script>  
+</script>  <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>  
       <meta name="citation_title" content="FAIR bioinfo">
 <meta name="citation_abstract" content="The BiGEst platform is organising a regional session of the IFB training course FAIR principles in a bioinformatics project from 9 to 11 April 2024 at the URFIST in Strasbourg, in the Studium, room E.02 in the Entresol.This 3-day course is aimed at bioinformaticians and biostatisticians wishing to acquire theoretical and practical skills on the FAIR principles (Easy to Find, Accessible, Interoperable, Reusable) applied to an analysis and/or development project.
 ">
@@ -317,34 +326,18 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(log2FoldChange <span class="sc">&gt;</span> <span class="dv">2</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                 baseMean log2FoldChange     lfcSE     stat       pvalue
-ostta02g00080    29.56508       5.443416 0.8587833 6.338522 2.319804e-10
-ostta13g02170    21.56799       2.190194 0.6348743 3.449807 5.609869e-04
-ostta18g00090  2404.14743       2.445414 0.4841484 5.050960 4.395963e-07
-ostta18g00680    86.19992       2.217704 0.5309856 4.176579 2.959258e-05
-ostta18g01200   238.86661       2.132801 0.4629375 4.607103 4.083172e-06
-ostta18g01690    85.24020       2.447758 0.6299163 3.885847 1.019739e-04
-ostta18g01970   168.39206       3.115217 0.4499598 6.923323 4.411716e-12
-ostta18g01980 13705.92368       3.557967 0.4234272 8.402782 4.360229e-17
-                      padj          Gene
-ostta02g00080 7.353779e-08 ostta02g00080
-ostta13g02170 3.335735e-02 ostta13g02170
-ostta18g00090 1.045140e-04 ostta18g00090
-ostta18g00680 3.517818e-03 ostta18g00680
-ostta18g01200 7.766194e-04 ostta18g01200
-ostta18g01690 1.077524e-02 ostta18g01690
-ostta18g01970 2.097771e-09 ostta18g01970
-ostta18g01980 4.146578e-14 ostta18g01980</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(log2FoldChange <span class="sc">&gt;</span> <span class="dv">2</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-4e858aa864412e1f78f2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4e858aa864412e1f78f2">{"x":{"filter":"none","vertical":false,"data":[["ostta02g00080","ostta13g02170","ostta18g00090","ostta18g00680","ostta18g01200","ostta18g01690","ostta18g01970","ostta18g01980"],[29.5650812298829,21.5679910900148,2404.14742843248,86.19991503404761,238.866608794214,85.2402032234418,168.392059232464,13705.9236828658],[5.44341628655665,2.19019395877423,2.44541409334692,2.21770351860412,2.13280067909894,2.4477580000468,3.11521661500222,3.55796658085472],[0.858783275751089,0.634874295015189,0.484148425573172,0.530985632578909,0.462937457548752,0.62991627209801,0.449959767361731,0.423427204338831],[6.33852153419715,3.44980727046419,5.05095950782418,4.17657914364481,4.60710327998104,3.88584659338019,6.92332257452218,8.4027822123767],[2.31980421578733e-10,0.00056098690165851,4.39596260182333e-07,2.95925810287653e-05,4.08317223138305e-06,0.000101973889437689,4.41171607028628e-12,4.36022882325658e-17],[7.35377936404583e-08,0.0333573458061624,0.00010451401085835,0.00351781806979448,0.000776619358409055,0.0107752409839158,2.09777099142113e-09,4.14657761091701e-14],["ostta02g00080","ostta13g02170","ostta18g00090","ostta18g00680","ostta18g01200","ostta18g01690","ostta18g01970","ostta18g01980"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>baseMean<\/th>\n      <th>log2FoldChange<\/th>\n      <th>lfcSE<\/th>\n      <th>stat<\/th>\n      <th>pvalue<\/th>\n      <th>padj<\/th>\n      <th>Gene<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"baseMean","targets":1},{"name":"log2FoldChange","targets":2},{"name":"lfcSE","targets":3},{"name":"stat","targets":4},{"name":"pvalue","targets":5},{"name":"padj","targets":6},{"name":"Gene","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div></div>
 </section>
 <section id="up-regulated" class="level3">
 <h3 class="anchored" data-anchor-id="up-regulated">Up regulated</h3>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(log2FoldChange <span class="sc">&gt;</span> <span class="dv">2</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(log2FoldChange <span class="sc">&gt;</span> <span class="dv">2</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 baseMean log2FoldChange     lfcSE     stat       pvalue
 ostta02g00080    29.56508       5.443416 0.8587833 6.338522 2.319804e-10
@@ -370,18 +363,18 @@ ostta18g01980 4.146578e-14 ostta18g01980</code></pre>
 <section id="volcano-plot" class="level3">
 <h3 class="anchored" data-anchor-id="volcano-plot">Volcano plot</h3>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>pvalue_threshold <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> log2FoldChange, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue))) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>pvalue <span class="sc">&lt;</span> pvalue_threshold, <span class="st">"red"</span>, <span class="st">"gray"</span>)) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">subset</span>(data, pvalue <span class="sc">&lt;</span> pvalue_threshold), <span class="fu">aes</span>(<span class="at">label =</span> Gene), <span class="at">vjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Log2FoldChange"</span>, <span class="at">y =</span> <span class="st">"-log10(p-value)"</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pvalue_threshold <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> log2FoldChange, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue))) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>pvalue <span class="sc">&lt;</span> pvalue_threshold, <span class="st">"red"</span>, <span class="st">"gray"</span>)) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">subset</span>(data, pvalue <span class="sc">&lt;</span> pvalue_threshold), <span class="fu">aes</span>(<span class="at">label =</span> Gene), <span class="at">vjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Log2FoldChange"</span>, <span class="at">y =</span> <span class="st">"-log10(p-value)"</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 324 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -402,7 +395,7 @@ ostta18g01980 4.146578e-14 ostta18g01980</code></pre>
 <section id="session" class="level2">
 <h2 class="anchored" data-anchor-id="session">Session</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.3.1 (2023-06-16)
 Platform: x86_64-conda-linux-gnu (64-bit)
@@ -424,18 +417,19 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.5.0 dplyr_1.1.4  
+[1] ggplot2_3.5.0 DT_0.33       dplyr_1.1.4  
 
 loaded via a namespace (and not attached):
  [1] vctrs_0.6.5       cli_3.6.2         knitr_1.45        rlang_1.1.3      
  [5] xfun_0.43         generics_0.1.3    jsonlite_1.8.8    labeling_0.4.3   
- [9] glue_1.7.0        colorspace_2.1-0  htmltools_0.5.8.1 scales_1.3.0     
-[13] fansi_1.0.6       rmarkdown_2.26    grid_4.3.1        munsell_0.5.1    
-[17] evaluate_0.23     tibble_3.2.1      fastmap_1.1.1     yaml_2.3.8       
-[21] lifecycle_1.0.4   compiler_4.3.1    htmlwidgets_1.6.4 pkgconfig_2.0.3  
-[25] farver_2.1.1      digest_0.6.35     R6_2.5.1          tidyselect_1.2.1 
-[29] utf8_1.2.4        pillar_1.9.0      magrittr_2.0.3    withr_3.0.0      
-[33] tools_4.3.1       gtable_0.3.4     </code></pre>
+ [9] glue_1.7.0        colorspace_2.1-0  htmltools_0.5.8.1 sass_0.4.9       
+[13] scales_1.3.0      fansi_1.0.6       rmarkdown_2.26    grid_4.3.1       
+[17] munsell_0.5.1     jquerylib_0.1.4   crosstalk_1.2.1   evaluate_0.23    
+[21] tibble_3.2.1      fastmap_1.1.1     yaml_2.3.8        lifecycle_1.0.4  
+[25] compiler_4.3.1    htmlwidgets_1.6.4 pkgconfig_2.0.3   farver_2.1.1     
+[29] digest_0.6.35     R6_2.5.1          tidyselect_1.2.1  utf8_1.2.4       
+[33] pillar_1.9.0      magrittr_2.0.3    bslib_0.7.0       withr_3.0.0      
+[37] gtable_0.3.4      tools_4.3.1       cachem_1.0.8     </code></pre>
 </div>
 </div></div>
 </section>
@@ -826,7 +820,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
