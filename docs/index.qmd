@@ -63,6 +63,7 @@ data %>% filter(log2FoldChange > 2, padj < 0.05)
 
 ```{r}
 library(ggplot2)
+library(plotly)
 
 pvalue_threshold <- 0.05
 
@@ -73,7 +74,7 @@ p <- ggplot(data, aes(x = log2FoldChange, y = -log10(pvalue))) +
   labs(x = "Log2FoldChange", y = "-log10(p-value)") +
   theme_minimal()
 
-p
+ggplotly(p)
 ```
 
 ## Conclusion
